@@ -4,28 +4,21 @@ using Pierre.Models;
 using System.Threading.Tasks;
 using Pierre.ViewModels;
 
-namespace Pierre.Controllers
-{
-    public class AccountController : Controller
-    {
+namespace Pierre.Controllers {
+    public class AccountController : Controller {
         private readonly PierreContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-
-        public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, PierreContext db)
-        {
+        public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, PierreContext db) {
             _userManager = userManager;
             _signInManager = signInManager;
             _db = db;
         }
-
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             return View();
         }
 
-        public IActionResult Register()
-        {
+        public IActionResult Register() {
             return View();
         }
 
@@ -36,36 +29,28 @@ namespace Pierre.Controllers
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Login");
             }
             else
             {
                 return View();
             }
         }
-
-        public ActionResult Login()
-        {
+        public ActionResult Login() {
             return View();
         }
-
         [HttpPost]
-        public async Task<ActionResult> Login(LoginViewModel model)
-        {
+        public async Task<ActionResult> Login(LoginViewModel model) {
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
-            if (result.Succeeded)
-            {
+            if (result.Succeeded) {
                 return RedirectToAction("Index");
             }
-            else
-            {
+            else {
                 return View();
             }
         }
-
         [HttpPost]
-        public async Task<ActionResult> LogOff()
-        {
+        public async Task<ActionResult> LogOff() {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index");
         }

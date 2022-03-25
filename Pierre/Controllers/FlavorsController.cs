@@ -19,17 +19,12 @@ namespace Pierre.Controllers {
       _db = db;
     }
     [AllowAnonymous]
-    public async Task<ActionResult> Index() {
-      ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      var userFlavors = _db.Flavors
-        .Where(entry => entry.User.Id == currentUser.Id)
+    public ActionResult Index() {
+      ViewBag.Flavors = _db.Flavors
         .Include(flavor => flavor.JoinEntities)
         .ThenInclude(join => join.Treat)
-        .OrderBy(userFlavors => userFlavors.Name)
         .ToList();
-        return View(userFlavors);
+      return View(_db.Flavors.OrderBy(flavor => flavor.Name).ToList());
     }
     public ActionResult Create(int id) {
       return View();

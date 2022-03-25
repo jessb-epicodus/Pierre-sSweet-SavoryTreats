@@ -19,17 +19,12 @@ namespace Pierre.Controllers {
       _db = db;
     }
     [AllowAnonymous]
-      public async Task<ActionResult> Index() {
-      ViewBag.Flavor = new SelectList(_db.Flavors, "Flavor", "Name");
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      var userTreats = _db.Treats
-        .Where(entry => entry.User.Id == currentUser.Id)
+      public ActionResult Index() {
+      ViewBag.Treats = _db.Treats
         .Include(treat => treat.JoinEntities)
         .ThenInclude(join => join.Flavor)
-        .OrderBy(userTreats => userTreats.Name)
         .ToList();
-      return View(userTreats);
+      return View(_db.Treats.OrderBy(treat => treat.Name).ToList());
     }
     public ActionResult Create() {
       return View();
@@ -65,7 +60,7 @@ namespace Pierre.Controllers {
       return RedirectToAction("Details", new {id= treat.TreatId});
     }
     [HttpPost, ActionName("DeleteFlavor")]// stretch - stay on Flavors/Details/Id
-    public ActionResult DeleteFlavor(int joinId, TreatFlavor engineermachine) {
+    public ActionResult DeleteFlavor(int joinId, TreatFlavor treatFlavor) {
       var joinEntry = _db.TreatFlavor.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
       _db.TreatFlavor.Remove(joinEntry);
       _db.SaveChanges();

@@ -38,13 +38,13 @@
                 }
               </td>
               <td>@Html.ActionLink($"{flavor.Name}", "Details", "Flavors", new {id= flavor.FlavorId})</td>
-              <td>@Html.DisplayFor(model => flavor.Name)</td>
               <td>
                 @if(@ViewBag.Count == 0) {
                   <em>No treats have been added</em>
                 } 
                 @foreach(var join in flavor.JoinEntities) { 
                   @join.Treat.Name 
+                  <br>
                 }
               </td>
             </tr>

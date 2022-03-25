@@ -29,7 +29,7 @@
             <tr>
               <th scope="row"></th>
               <td>
-                @Html.ActionLink("⌨", "Edit", new {id = flavor.FlavorId})
+                @Html.ActionLink("✏️", "Edit", new {id = flavor.FlavorId})
               </td>
               <td>
                 @using(@Html.BeginForm("Delete", "Flavors")) {
@@ -41,7 +41,7 @@
               <td>@Html.DisplayFor(model => flavor.Name)</td>
               <td>
                 @if(@ViewBag.Count == 0) {
-                  <em>No machines have been added</em>
+                  <em>No treats have been added</em>
                 } 
                 @foreach(var join in flavor.JoinEntities) { 
                   @join.Treat.Name 

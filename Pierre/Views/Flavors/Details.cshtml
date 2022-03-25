@@ -10,7 +10,7 @@
     <h5 class="card-title">
       <span style="text-align:left;">@Html.DisplayFor(m => m.Name)</span>
       <span style="float:right;">
-        @Html.ActionLink("⌨", "Edit", new { id = Model.FlavorId })
+        @Html.ActionLink("✏️", "Edit", new { id = Model.FlavorId })
         @using(@Html.BeginForm("Delete", "Flavors")) {
           @Html.Hidden("id", @Model.FlavorId)
           <button type="submit" class="btn btn-default">🗑</button>
@@ -20,10 +20,6 @@
     <p class="card-text">
       <table class="table table-striped">
         <tbody>
-          <tr>
-            <th scope="row">Flavor</th>
-            <td>@Html.DisplayFor(m => m.Name)</td>
-          </tr>
           <tr>
             <th scope="row">@Model.Name Treats</th>
             <td>
@@ -38,13 +34,15 @@
                       <input type="submit" value="❌"/>
                     }
                   </div>
-              }
-              @using (Html.BeginForm("AddTreat", "Flavors"))
-              {
-                @Html.HiddenFor(m => m.FlavorId)
-                @Html.DropDownList("TreatId")
-                <input type="submit" value="➕" />
-              }
+                }
+                @using (Html.BeginForm("AddTreat", "Flavors"))
+                {
+                  <div class="row">
+                  @Html.HiddenFor(m => m.FlavorId)
+                  @Html.DropDownList("TreatId")
+                  <input type="submit" value="➕" />
+                  </div>
+                }
             </td>
           </tr>
         </tbody>

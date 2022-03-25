@@ -12,7 +12,7 @@
       @using (Html.BeginForm()) {
         <div class="col-auto">
           @Html.LabelFor(m => m.Name)
-          @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "Company", required="required"})
+          @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "Name", required="required"})
         </div>
         <div class="col-auto">
           @Html.LabelFor(m => m.Description)

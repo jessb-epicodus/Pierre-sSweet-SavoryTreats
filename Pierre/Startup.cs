@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pierre.Models;
+//new code
+using Microsoft.AspNetCore.Identity;
 
-namespace Pierre {
+namespace Pierre{
   public class Startup {
     public Startup(IWebHostEnvironment env) {
       var builder = new ConfigurationBuilder()
@@ -24,16 +25,6 @@ namespace Pierre {
       services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<PierreContext>()
         .AddDefaultTokenProviders();
-        
-// DEVELOPMENT USE ONLY - Never use in production environment
-      services.Configure<IdentityOptions>(options => {
-        options.Password.RequireDigit = false;
-        options.Password.RequiredLength = 0;
-        options.Password.RequireLowercase = false;
-        options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequireUppercase = false;
-        options.Password.RequiredUniqueChars = 0;
-      });
     }
     public void Configure(IApplicationBuilder app) {
       app.UseDeveloperExceptionPage();
@@ -45,7 +36,7 @@ namespace Pierre {
       });
       app.UseStaticFiles();
       app.Run(async (context) => {
-        await context.Response.WriteAsync("Sup");
+        await context.Response.WriteAsync("Hello World!");
       });
     }
   }

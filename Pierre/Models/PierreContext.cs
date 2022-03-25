@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Pierre.Models {
-  public class PierreContext : DbContext {
+  public class PierreContext : IdentityDbContext<ApplicationUser> {
     public DbSet<Flavor> Flavors { get; set; }
     public DbSet<Treat> Treats { get; set; }
     public DbSet<TreatFlavor> TreatFlavor { get; set; }

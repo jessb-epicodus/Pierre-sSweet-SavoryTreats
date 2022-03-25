@@ -1,3 +1,58 @@
 @{Layout = "_Layout";}
 
-@using Pierre.Models;
+@model Pierre.Models.Treat;
+
+<div class="card">
+  <div class="card-header">
+    <h3>Treat Details</h3>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">
+      <span style="text-align:left;">@Html.DisplayFor(m => m.Name)</span>
+      <span style="float:right;">
+        @Html.ActionLink("⌨", "Edit", new { id = Model.TreatId })
+        @using(@Html.BeginForm("Delete", "Treats")) {
+          @Html.Hidden("id", @Model.TreatId)
+          <button type="submit" class="btn btn-default">🗑</button>
+        }
+      </span>
+    </h5>
+    <p class="card-text">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th scope="row">@Html.LabelFor(m => m.Name)</th>
+            <td>@Html.DisplayFor(m => m.Name)</td>
+          </tr>
+          <tr>
+            <th scope="row">@Html.LabelFor(m => m.Description)</th>
+            <td>@Html.DisplayFor(m => m.Description)</td>
+          </tr>
+          <tr>
+            <th scope="row">Flavors</th>
+            <td>
+              @if(@Model.JoinEntities.Count == 0) {
+                  <em>No flavors have been added</em>
+                } 
+                @foreach(var join in Model.JoinEntities) { 
+                  <div class="row">
+                    @join.Flavor.Name 
+                    @using(@Html.BeginForm("DeleteFlavor", "Treats")) {
+                      @Html.Hidden("joinId", @join.TreatFlavorId)
+                      <input type="submit" value="❌"/>
+                    }
+                  </div>
+              }
+              @using (Html.BeginForm("AddFlavor", "Treats"))
+              {
+                @Html.HiddenFor(m => m.TreatId)
+                @Html.DropDownList("FlavorId")
+                <input type="submit" value="➕" />
+              }
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+  </div>
+</div>

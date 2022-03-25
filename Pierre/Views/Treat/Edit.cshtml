@@ -4,22 +4,23 @@
 
 <div class="card">
   <div class="card-header">
-  <h3>New Treat</h3>
+  <h3>Edit Treat</h3>
   </div>
   <div class="card-body">
     <p class="card-text">
       <div class="col-auto">
       @using (Html.BeginForm()) {
+        @Html.HiddenFor(m => m.TreatId)
         <div class="col-auto">
           @Html.LabelFor(m => m.Name)
-          @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "Company", required="required"})
+          @Html.EditorFor(m => m.Name, new {@class = "form-control"})
         </div>
         <div class="col-auto">
           @Html.LabelFor(m => m.Description)
-          @Html.TextAreaFor(m => m.Description, new {@class = "form-control", placeholder = "Name"})
+          @Html.EditorFor(m => m.Description, new {@class = "form-control"})
         </div>
         <br>
-        <input type="submit" value="Submit" class="btn btn-info"/>
+        <input type="submit" value="Save" class="btn btn-info"/>
         }
       </p>
     </div>

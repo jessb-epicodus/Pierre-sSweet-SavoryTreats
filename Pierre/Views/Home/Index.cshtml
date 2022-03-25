@@ -46,17 +46,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-      @* 
-      {
-        if (_db.TreatFlavor.Where( engM => engM.EngineerId == EngineerId 
-        && engM.MachineId == mach.MachineId).ToList().Count() == 0 )
-        {
-          _db.TreatFlavors.Add(new TreatFlavor(){EngineerId = 
-            EngineerId, MachineId = mach.MachineId});
-          _db.SaveChanges();
-        }
-      }  *@

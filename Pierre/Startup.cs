@@ -2,11 +2,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pierre.Models;
-//new code
-using Microsoft.AspNetCore.Identity;
 
 namespace Pierre{
   public class Startup {
@@ -46,7 +45,7 @@ namespace Pierre{
       });
       app.UseStaticFiles();
       app.Run(async (context) => {
-        await context.Response.WriteAsync("Hello World!");
+        await context.Response.WriteAsync("Wazzzuuuppp?");
       });
     }
   }

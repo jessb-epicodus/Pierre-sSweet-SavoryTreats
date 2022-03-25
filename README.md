@@ -29,7 +29,7 @@ This is a web app using user authentication and a many-to-many relationship wher
 * Add the following code to _appsettings.json_ & fill in your password where designated  
   `{  
     "ConnectionStrings": {  
-      "DefaultConnection": "Server=localhost;Port=3306;database=jessi_baker;uid=root;pwd=YOUR-PASSWORD-HERE;"  
+      "DefaultConnection": "Server=localhost;Port=3306;database=jessi_baker_pierre;uid=root;pwd=YOUR-PASSWORD-HERE;"  
     }  
   }`  
 * Add _*/appsettings.json_ to _.gitignore_

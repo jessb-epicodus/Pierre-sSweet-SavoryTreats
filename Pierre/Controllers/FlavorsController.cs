@@ -18,5 +18,20 @@ namespace Pierre.Controllers {
       _userManager = userManager;
       _db = db;
     }
+    public async Task<ActionResult> Index() {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).OrderBy(userFlavors => userFlavors.Name).ToList();
+      return View(userFlavors);
+    }
+    public ActionResult Create(int id) {
+      return View();
+    }
+    [HttpPost]
+    public ActionResult Create(Flavor flavor, int TreatId) {
+      _db.Flavors.Add(flavor);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new {id= flavor.FlavorId});
+    }
   }
 }

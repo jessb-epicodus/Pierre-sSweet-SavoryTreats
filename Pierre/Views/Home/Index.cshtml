@@ -2,3 +2,47 @@
 
 @using Pierre.Models;
 @model Pierre.Models.TreatFlavor;
+
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">Pierre's Bakery</h1>
+    <hr>
+    <p class="col-md-8 fs-4">Build and organize your sweet and savory treats so all your culinary specialties are in one place.</p>
+  </div>
+</div>
+<div class="row align-items-md-stretch">
+  <div class="col-md-6">
+    <div class="h-100 p-5 text-white bg-dark rounded-3">
+      <h2>Flavors</h2>
+      <p>
+        @if(@ViewBag.Flavors.Count == 0) {
+          <em>No flavors have been entered</em>
+        } @foreach(Flavor flavor in ViewBag.Flavors) {
+          @Html.ActionLink($"{flavor.Name}", "Details", "Flavors", new {id= flavor.FlavorId})<br>
+        }
+      </p>
+      <div class="row">
+        <form method="get" action="/Flavors/Create">
+          <button class="btn btn-outline-light" type="submit">Add Flavor</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="h-100 p-5 text-white bg-dark rounded-3">
+      <h2>Treats</h2>
+      <p>
+        @if(@ViewBag.Treats.Count == 0) {
+          <em>No treats have been entered</em>
+        } @foreach(Treat treat in ViewBag.Treats) {
+          @Html.ActionLink($"{treat.Name}", "Details", "Treats", new {id= treat.TreatId})<br>
+        }
+      </p>
+      <div class="row">
+        <form method="get" action="/Treats/Create">
+          <button class="btn btn-outline-light" type="submit">Add Treat</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

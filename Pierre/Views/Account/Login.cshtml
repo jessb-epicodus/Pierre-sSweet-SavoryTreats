@@ -1,16 +1,25 @@
 @{Layout = "_Layout";}
 
-@using Pierre.ViewModels
-@model LoginViewModel
+@using Pierre.ViewModels;
+@model LoginViewModel;
 
-<h2>Log in with your account</h2>
-
-@using (Html.BeginForm()){
-  @Html.LabelFor(m => m.Email)
-  @Html.TextBoxFor(m => m.Email)
-
-  @Html.LabelFor(m => m.Password)
-  @Html.PasswordFor(m => m.Password)
-
-  <input type="submit" value="Log in" class="btn btn-default" />
-}
+<div class="card">
+  <div class="card-header">
+  <h3>Login</h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      <div class="col-auto">
+        @using (Html.BeginForm()){
+          <p>User Login</p>
+          @Html.TextBoxFor(m => m.Email, new  {@class = "form-control", placeholder = "Login", required="required"})
+        <br>
+          @Html.LabelFor(m => m.Password)
+          @Html.PasswordFor(m => m.Password, new  {@class = "form-control", placeholder = "Password", required="required"})
+        <br>
+          <input type="submit" value="Log in" class="btn btn-info" />
+        }
+      </p>
+    </div>
+  </div>
+</div>

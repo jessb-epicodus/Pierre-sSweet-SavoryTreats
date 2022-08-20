@@ -21,3 +21,23 @@ body{
 	color:#CCC;
 	padding:8px;
 }
+
+a:link {
+  color: #b2ffed;
+	text-decoration: none;
+}
+
+a:visited {
+  color: #b2ffed;
+	text-decoration: none;
+}
+
+a:hover {
+  color: white;
+	text-decoration: none;
+}
+
+a:active {
+  color: white;
+	text-decoration: none;
+}

@@ -27,12 +27,10 @@ namespace Pierre.Controllers {
         {
             var user = new ApplicationUser { UserName = model.Email };
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-            if (result.Succeeded)
-            {
+            if (result.Succeeded) {
                 return RedirectToAction("Login");
             }
-            else
-            {
+            else {
                 return View();
             }
         }

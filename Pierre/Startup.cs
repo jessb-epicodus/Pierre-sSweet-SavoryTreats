@@ -24,7 +24,7 @@ namespace Pierre{
       services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<PierreContext>()
         .AddDefaultTokenProviders();
-      // for development use only:
+      // ⚠️ for development use only:
       services.Configure<IdentityOptions>(options =>
       {
         options.Password.RequireDigit = false;

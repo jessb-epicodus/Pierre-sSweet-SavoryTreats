@@ -11,7 +11,7 @@
   ___________________________
   <br>
 
-  ![image](./wwwroot/img/snapshot_home.png)
+  ![image](Pierre\wwwroot\img\snapshot_home.png)
 
 ------------------------------
 
